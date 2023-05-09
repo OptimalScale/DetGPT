@@ -36,6 +36,18 @@ function main() {
         filename='pretrained_minigpt4_13b.pth'
         wget ${public_server}/${filename}
     fi
+
+    if [ "$1" = "coco_task_annotation" -o "$1" = "all" ]; then
+        echo "downloading coco_task_annotation"
+        filename='coco_task_annotation.json'
+        wget ${public_server}/${filename}
+    fi
+
+    if [ "$1" = "task_tuned" -o "$1" = "all" ]; then
+        echo "downloading task_tuned.pth"
+        filename='task_tuned.pth'
+        wget ${public_server}/${filename}
+    fi
 }
 
 main "$@"

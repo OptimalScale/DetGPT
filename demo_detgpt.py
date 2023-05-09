@@ -14,7 +14,7 @@ import numpy as np
 from detgpt.common.config import Config
 from detgpt.common.dist_utils import get_rank
 from detgpt.common.registry import registry
-from detgpt.conversation.conversation import Chat, Conversation, SeparatorStyle#, CONV_VISION
+from detgpt.conversation.conversation import Chat, Conversation, SeparatorStyle  # , CONV_VISION
 from GroundingDINO.groundingdino.models import build_model
 from GroundingDINO.groundingdino.util.slconfig import SLConfig
 from GroundingDINO.groundingdino.util.utils import clean_state_dict
@@ -42,6 +42,7 @@ def parse_args():
     args = parser.parse_args()
     return args
 
+
 args = parse_args()
 print('Initializing Chat')
 cfg = Config(args)
@@ -61,12 +62,12 @@ if args.system_path:
         system_message = file.read()
         print(f"system message: \n {system_message}")
 else:
-    system_message = "You must strictly answer the question step by step:\n"\
-    "Step-1. describe the given image in detail.\n"\
-    "Step-2. find all the objects related to user input, and concisely explain why these objects meet the requirement.\n"\
-    "Step-3. list out all related objects existing in the image strictly as follows: <Therefore the answer is: [object_names]>.\n"\
-    "If you did not complete all 3 steps as detailed as possible, you will be killed.\n"\
-    "You must finish the answer with complete sentences."
+    system_message = "You must strictly answer the question step by step:\n" \
+                     "Step-1. describe the given image in detail.\n" \
+                     "Step-2. find all the objects related to user input, and concisely explain why these objects meet the requirement.\n" \
+                     "Step-3. list out all related objects existing in the image strictly as follows: <Therefore the answer is: [object_names]>.\n" \
+                     "If you did not complete all 3 steps as detailed as possible, you will be killed.\n" \
+                     "You must finish the answer with complete sentences."
 
 CONV_VISION = Conversation(
     system=system_message,
@@ -76,6 +77,7 @@ CONV_VISION = Conversation(
     sep_style=SeparatorStyle.SINGLE,
     sep="###",
 )
+
 
 def load_model_hf(model_config_path, repo_id, filename, device='cpu'):
     model_args = SLConfig.fromfile(model_config_path)
@@ -88,25 +90,29 @@ def load_model_hf(model_config_path, repo_id, filename, device='cpu'):
     _ = model.eval()
     return model
 
+
 def image_transform_grounding(init_image):
     transform = T.Compose([
         T.RandomResize([800], max_size=1333),
         T.ToTensor(),
         T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])
-    image, _ = transform(init_image, None) # 3, h, w
+    image, _ = transform(init_image, None)  # 3, h, w
     return init_image, image
+
 
 def image_transform_grounding_for_vis(init_image):
     transform = T.Compose([
         T.RandomResize([800], max_size=1333),
     ])
-    image, _ = transform(init_image, None) # 3, h, w
+    image, _ = transform(init_image, None)  # 3, h, w
     return image
 
+
 def print_format(message):
-    print(f"*"*20)
+    print(f"*" * 20)
     print(f"\n{message}\n")
+
 
 def list_to_str(cat_list, sep=". "):
     result = ""
@@ -114,6 +120,7 @@ def list_to_str(cat_list, sep=". "):
         result += cat
         result += sep
     return result[:-1]
+
 
 def run_grounding(input_image, llm_message_original, box_threshold, text_threshold):
     init_image = input_image.convert("RGB")
@@ -133,7 +140,7 @@ def run_grounding(input_image, llm_message_original, box_threshold, text_thresho
         # Remove the unnecessary characters
         substr = re.sub(r"(?i)therefore,?\s+the\s+answer\s+is:?[\s\[\],]*", "", substr)
         categories = re.sub(r"[\[\]]", "", substr)
-        cat_list=[c.strip() for c in categories.split(',')]
+        cat_list = [c.strip() for c in categories.split(',')]
         # remove duplicate
         cat_list = list(set(cat_list))
         categories = list_to_str(cat_list)
@@ -144,7 +151,7 @@ def run_grounding(input_image, llm_message_original, box_threshold, text_thresho
         # Remove the unnecessary characters
         substr = re.sub(r"(?i)therefore,?\s+the\s+target\s+objects?\s+are:?[\s\[\],]*", "", substr)
         categories = re.sub(r"[\[\]]", "", substr)
-        cat_list=[c.strip() for c in categories.split(',')]
+        cat_list = [c.strip() for c in categories.split(',')]
         # remove duplicate
         cat_list = list(set(cat_list))
         categories = list_to_str(cat_list)
@@ -155,14 +162,13 @@ def run_grounding(input_image, llm_message_original, box_threshold, text_thresho
         categories = ""
     # run grounidng
     # boxes, logits, phrases = predict(detector, image_tensor, categories, box_threshold, text_threshold, device=f"cuda:{args.gpu_id[0]}")
-    boxes, logits, phrases = predict(detector, image_tensor, categories, box_threshold, text_threshold, device=cuda_detector)
+    boxes, logits, phrases = predict(detector, image_tensor, categories, box_threshold, text_threshold,
+                                     device=cuda_detector)
     print_format(f"Detector predicted phrases {phrases}")
     annotated_frame = annotate(image_source=np.asarray(image_pil), boxes=boxes, logits=logits, phrases=phrases)
     image_with_box = Image.fromarray(cv2.cvtColor(annotated_frame, cv2.COLOR_BGR2RGB))
 
-
     return image_with_box, f"{categories}"
-
 
 
 def setup_seeds(config):
@@ -196,6 +202,7 @@ vis_processor = registry.get_processor_class(vis_processor_cfg.name).from_config
 chat = Chat(model_llm, vis_processor, device=cuda_llm)
 print_format('Initialization Finished')
 
+
 # ========================================
 #             Gradio Setting
 # ========================================
@@ -207,7 +214,11 @@ def gradio_reset(chat_state, img_list, llm_message_original):
         img_list = []
     if llm_message_original is not None:
         llm_message_original = []
-    return None, gr.update(value=None, interactive=True), gr.update(placeholder='Please upload your image first', interactive=False),gr.update(value="1. Upload Image", interactive=True), chat_state, img_list, llm_message_original, gr.update(value='Detected objects will be shown here.', interactive=False)
+    return None, gr.update(value=None, interactive=True), gr.update(placeholder='Please upload your image first',
+                                                                    interactive=False), gr.update(
+        value="1. Upload Image", interactive=True), chat_state, img_list, llm_message_original, gr.update(
+        value='Detected objects will be shown here.', interactive=False)
+
 
 def upload_img(gr_img, text_input, chat_state, system_prompt=None):
     if gr_img is None:
@@ -221,27 +232,30 @@ def upload_img(gr_img, text_input, chat_state, system_prompt=None):
         print(f"system prompt: {chat_state.system}")
     img_list = []
     llm_message = chat.upload_img(gr_img, chat_state, img_list)
-    return gr.update(interactive=False), gr.update(interactive=True, placeholder='Type and press Enter'), gr.update(value="Start Chatting", interactive=False), chat_state, img_list
+    return gr.update(interactive=False), gr.update(interactive=True, placeholder='Type and press Enter'), gr.update(
+        value="Start Chatting", interactive=False), chat_state, img_list
+
 
 def gradio_ask(user_message, chatbot, chat_state):
     if len(user_message) == 0:
         return gr.update(interactive=True, placeholder='Input should not be empty!'), chatbot, chat_state
-    user_prompt="\nAnswer me with several sentences. End the answer by listing out target objects to my question strictly as follows: <Therefore the answer is: [object_names]>."
+    user_prompt = "\nAnswer me with several sentences. End the answer by listing out target objects to my question strictly as follows: <Therefore the answer is: [object_names]>."
     print(user_message)
-    chat.ask(user_message+user_prompt, chat_state)
+    chat.ask(user_message + user_prompt, chat_state)
     chatbot = chatbot + [[user_message, None]]
     return '', chatbot, chat_state
 
 
-def gradio_answer(chatbot, chat_state, img_list, num_beams, temperature,  length_penalty, do_sample, llm_message_original):
+def gradio_answer(chatbot, chat_state, img_list, num_beams, temperature, length_penalty, do_sample,
+                  llm_message_original):
     llm_message_old = chat.answer(conv=chat_state,
-                              img_list=img_list,
-                              num_beams=num_beams,
-                              temperature=temperature,
-                              length_penalty=length_penalty,
-                              do_sample=do_sample,
-                              max_new_tokens=300,
-                              max_length=2000)[0]
+                                  img_list=img_list,
+                                  num_beams=num_beams,
+                                  temperature=temperature,
+                                  length_penalty=length_penalty,
+                                  do_sample=do_sample,
+                                  max_new_tokens=300,
+                                  max_length=2000)[0]
     pattern1 = r"(?:Therefore, the answer is|Therefore the answer is).*"
     pattern2 = r"(?:Therefore, the target objects are|Therefore the target objects are).*"
     llm_message = re.sub(pattern1, "", llm_message_old)
@@ -250,8 +264,10 @@ def gradio_answer(chatbot, chat_state, img_list, num_beams, temperature,  length
     llm_message_original.append(llm_message_old)
     return chatbot, chat_state, img_list, llm_message_original
 
+
 title = """<h1 align="center">DetGPT</h1>"""
 description = """<h3>This is the demo of DetGPT. Tell me your goal and I'll find stuff to help you!</h3>"""
+restart = """<h5>Press restart before trying a new image!</h5>"""
 feature = """<h4>Why DetGPT is appealing?</h4>
 <ol>
   <li>DetGPT locates target objects, not just describing images.</li>
@@ -265,7 +281,7 @@ Out of respect for privacy and ethical considerations, our model refrains from d
 # article = """<p><a href='https://minigpt-4.github.io'><img src='https://img.shields.io/badge/Project-Page-Green'></a></p><p><a href='https://github.com/Vision-CAIR/MiniGPT-4'><img src='https://img.shields.io/badge/Github-Code-blue'></a></p><p><a href='https://raw.githubusercontent.com/Vision-CAIR/MiniGPT-4/main/MiniGPT_4.pdf'><img src='https://img.shields.io/badge/Paper-PDF-red'></a></p>
 # """
 
-#TODO show examples below
+# TODO show examples below
 
 with gr.Blocks() as demo:
     gr.Markdown(title)
@@ -301,13 +317,15 @@ with gr.Blocks() as demo:
                     interactive=True,
                     label="Length penalty",
                 )
-                do_sample=gr.Radio([True, False], value=False, label="do_sample", interactive=True)
+                do_sample = gr.Radio([True, False], value=False, label="do_sample", interactive=True)
 
             upload_button = gr.Button(value="1. Upload Image", interactive=True, variant="primary")
-            text_input = gr.Textbox(label='User', placeholder='Input Text Here (Please upload your image first)', interactive=False)
+            text_input = gr.Textbox(label='User', placeholder='Input Text Here (Please upload your image first)',
+                                    interactive=False)
             text_button = gr.Button(value="2. Submit Question", interactive=True, variant="primary")
 
             clear = gr.Button("Restart")
+            gr.Markdown("restart")
 
         with gr.Column():
             chat_state = gr.State()
@@ -317,19 +335,18 @@ with gr.Blocks() as demo:
             detected_objects = gr.Textbox(label='Detected Objects', value="Detected objects will be shown here.",
                                           interactive=False)
             if args.enable_system:
-                system_prompt = gr.Textbox(label='System', placeholder=system_message, interactive=True, value=system_message)
+                system_prompt = gr.Textbox(label='System', placeholder=system_message, interactive=True,
+                                           value=system_message)
 
             cur_dir = os.path.dirname(os.path.abspath(__file__))
             gr.Examples(examples=[
-                [f"{cur_dir}/examples/big_kitchen.jpg", "I want to have a cold beverage."],
+                [f"{cur_dir}/examples/big_kitchen.jpg", "I want to have a cold beverage." ],
                 [f"{cur_dir}/examples/banana.jpg", "Find food that can relieve high blood pressure."],
                 [f"{cur_dir}/examples/foods.jpg", "Find the foods high in protein."],
                 [f"{cur_dir}/examples/wine.jpg", "Find items appropriate for a romantic dinner."],
                 [f"{cur_dir}/examples/smoking.jpg", "Find an item inappropriate for children."],
                 [f"{cur_dir}/examples/bird.jpeg", "find what’s interesting about the image."],
             ], inputs=[image, text_input])
-
-
         with gr.Column():
             gallery = gr.outputs.Image(
                 type="pil",
@@ -343,19 +360,35 @@ with gr.Blocks() as demo:
                     label="Text Threshold", minimum=0.0, maximum=1.0, value=0.25, step=0.001
                 )
     if args.enable_system:
-        upload_button.click(upload_img, [image, text_input, chat_state, system_prompt], [image, text_input, upload_button, chat_state, img_list])
+        upload_button.click(upload_img, [image, text_input, chat_state, system_prompt],
+                            [image, text_input, upload_button, chat_state, img_list])
     else:
-        upload_button.click(upload_img, [image, text_input, chat_state], [image, text_input, upload_button, chat_state, img_list])
+        upload_button.click(upload_img, [image, text_input, chat_state],
+                            [image, text_input, upload_button, chat_state, img_list])
     if not args.disable_detector:
-        # text_input.submit(gradio_ask, [text_input, chatbot, chat_state], [text_input, chatbot, chat_state]).then(
+        text_input.submit(gradio_ask, [text_input, chatbot, chat_state], [text_input, chatbot, chat_state]).then(
+            gradio_answer,
+            [chatbot, chat_state, img_list, num_beams, temperature, length_penalty, do_sample, llm_message_original],
+            [chatbot, chat_state, img_list, llm_message_original]
+        ).then(fn=run_grounding, inputs=[image, llm_message_original, box_threshold, text_threshold],
+               outputs=[gallery, detected_objects])
         text_button.click(gradio_ask, [text_input, chatbot, chat_state], [text_input, chatbot, chat_state]).then(
-            gradio_answer, [chatbot, chat_state, img_list, num_beams, temperature, length_penalty, do_sample, llm_message_original], [chatbot, chat_state, img_list, llm_message_original]
-        ).then(fn=run_grounding, inputs=[image, llm_message_original, box_threshold, text_threshold], outputs=[gallery, detected_objects])
+            gradio_answer,
+            [chatbot, chat_state, img_lssist, num_beams, temperature, length_penalty, do_sample, llm_message_original],
+            [chatbot, chat_state, img_list, llm_message_original]
+        ).then(fn=run_grounding, inputs=[image, llm_message_original, box_threshold, text_threshold],
+               outputs=[gallery, detected_objects])
     else:
-        # text_input.submit(gradio_ask, [text_input, chatbot, chat_state], [text_input, chatbot, chat_state]).then(
+        text_input.submit(gradio_ask, [text_input, chatbot, chat_state], [text_input, chatbot, chat_state]).then(
+            gradio_answer, [chatbot, chat_state, img_list, num_beams, temperature, length_penalty, do_sample],
+            [chatbot, chat_state, img_list]
+            )
         text_button.click(gradio_ask, [text_input, chatbot, chat_state], [text_input, chatbot, chat_state]).then(
-            gradio_answer, [chatbot, chat_state, img_list, num_beams, temperature, length_penalty, do_sample], [chatbot, chat_state, img_list]
+            gradio_answer, [chatbot, chat_state, img_list, num_beams, temperature, length_penalty, do_sample],
+            [chatbot, chat_state, img_list]
         )
-    clear.click(gradio_reset, [chat_state, img_list, llm_message_original], [chatbot, image, text_input, upload_button, chat_state, img_list, llm_message_original, detected_objects], queue=False)
+    clear.click(gradio_reset, [chat_state, img_list, llm_message_original],
+                [chatbot, image, text_input, upload_button, chat_state, img_list, llm_message_original,
+                 detected_objects], queue=False)
 
 demo.launch(share=True, enable_queue=True)

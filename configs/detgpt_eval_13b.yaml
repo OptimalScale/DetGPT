@@ -8,7 +8,7 @@ model:
   low_resource: False
   prompt_path: "prompts/alignment.txt"
   prompt_template: '###Human: {} ###Assistant: '
-  ckpt: 'path/to/linear_ckpt'
+  ckpt: 'path/to/task_tuned.pth'
 
 
 datasets:

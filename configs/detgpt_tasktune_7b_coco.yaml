@@ -7,7 +7,7 @@ model:
   end_sym: "###"
   prompt_path: "prompts/alignment.txt"
   prompt_template: '###Human: {} ###Assistant: '
-  ckpt: 'path/to/linear_ckpt'
+  ckpt: 'path/to/pretrained_linear_weights'
 
 
 datasets:
