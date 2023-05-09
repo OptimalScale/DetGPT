@@ -1,0 +1,114 @@
+Metadata-Version: 2.1
+Name: detgpt
+Version: 0.0.1
+Summary: DetGPT.
+Author: Renjie Pi, Jiahui Gao, Shizhe Diao, Rui Pan, Hanze Dong, Jipeng Zhang, Leiwei Yao, Lingpeng Kong, Tong Zhang
+Classifier: Intended Audience :: Science/Research/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+
+# DetGPT: "Detective" LLM Models Powered by Object Detection
+
+<p align="center" width="100%">
+<img src="assets/detgpt.png" alt="LMFlow" style="width: 100%; min-width: 300px; display: block; margin: auto; background-color: transparent;">
+</p>
+
+
+[![Demo](https://img.shields.io/badge/Website-Demo-ff69b4.svg)](https://ef48e4188b7d43e5bc.gradio.live/)
+[![Project](https://img.shields.io/badge/Project-Page-20B2AA.svg)](https://xxxxxx)
+[![Code License](https://img.shields.io/badge/License-BSD--3--Clause-green)](https://github.com/pipilurj/instruct_detection/blob/master/LICENSE.md)
+[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
+[![Embark](https://img.shields.io/badge/Discord-DetGPT-%237289da.svg?logo=discord)](https://discord.gg/u9VJNpzhvA)
+[![slack badge](https://img.shields.io/badge/Slack-Join-blueviolet?logo=slack&amp)](https://join.slack.com/t/lmflow/shared_invite/zt-1s6egx12s-THlwHuCjF6~JGKmx7JoJPA)
+[![WeChat badge](https://img.shields.io/badge/WeChat-Join-brightgreen?logo=wechat&amp)](https://i.328888.xyz/2023/05/08/i19P4Q.jpeg)
+
+## News
+* [2023-05-08] The first version of DetGPT is available now! Try our [demo](https://optimalscale.github.io/LMFlow/).
+
+
+## [Online Demo](xxx)
+
+## Examples
+
+  |   |
+:-------------------------:
+![ex1](assets/ex1.jpeg) | 
+![ex5](assets/ex6.png)  |
+![ex3](assets/ex4.png)  |  
+
+
+## Features
+- DetGPT locates target objects, not just describing images.
+- DetGPT understands complex instructions, like "Find blood pressure-reducing foods in the image."
+- DetGPT accurately localizes target objects via LLM reasoning. - For example, it can identify bananas as a potassium-rich food to alleviate high blood pressure.
+- DetGPT provides answers beyond human common sense, like identifying unfamiliar fruits rich in potassium.
+
+
+
+## Setup
+
+**1. Installation**
+```bash
+conda env create -f environment.yml
+conda activate detgpt
+```
+
+
+```
+git clone https://github.com/OptimalScale/DetGPT.git
+cd DetGPT
+conda create -n detgpt python=3.9 -y
+conda activate detgpt
+pip install -e .
+```
+
+**2. Download the pretrained checkpoint**
+You can run following script to download our medical model checkpoints:
+```
+cd output_models
+bash download.sh all
+cd -
+```
+It will automatically download the Vicuna 13B and Vicuna 7B weights.
+Set the corresponding path in the model config file [here](detgpt/configs/models/detgpt.yaml#L16).
+
+Then, set the path to the pretrained checkpoint in the evaluation config file 
+in [eval_configs/detgpt_eval.yaml](eval_configs/detgpt_eval.yaml#L10) at Line 11.
+
+
+### Launching Demo Locally
+
+Try out our demo [demo.py](demo.py) on your local machine by running
+
+```
+python demo.py --cfg-path eval_configs/detgpt_eval.yaml  --gpu-id 0
+```
+
+
+### Training
+The training code will be coming soon...
+
+
+## Acknowledgement
+Our model implementation is greatly based on [MiniGPT-4](https://github.com/Vision-CAIR/MiniGPT-4), which is based on [BLIP2](https://huggingface.co/docs/transformers/main/model_doc/blip-2) and [Lavis](https://github.com/salesforce/LAVIS). Thanks for these great work!
+
+
+If you're using DetGPT in your research or applications, please cite using this BibTeX:
+```bibtex
+@misc{detgpt,
+      title={DetGPT: Detect What You Need via Reasoning}, 
+      author={Renjie Pi, Jiahui Gao, Shizhe Diao, Rui Pan, Hanze Dong, Jipeng Zhang, Leiwei Yao, Lingpeng Kong, Tong Zhang},
+      publisher = {GitHub},
+      journal = {GitHub repository},
+      year={2023},
+}
+```
+
+
+## License
+This repository is under [BSD 3-Clause License](LICENSE.md).
+Many codes are based on [MiniGPT-4](https://github.com/Vision-CAIR/MiniGPT-4) and [Lavis](https://github.com/salesforce/LAVIS) with 
+BSD 3-Clause License.

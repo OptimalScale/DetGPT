@@ -1,0 +1,6 @@
+datasets:
+  coco_align:
+    data_type: images
+    build_info:
+      storage: ./dataset/coco
+      file_name: chatgpt_coco_detection_with_description.json
