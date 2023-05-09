@@ -14,10 +14,11 @@
 [![WeChat badge](https://img.shields.io/badge/WeChat-Join-brightgreen?logo=wechat&amp)](https://i.328888.xyz/2023/05/08/i19P4Q.jpeg)
 
 ## News
-* [2023-05-08] The first version of DetGPT is available now! Try our [demo](https://e80979f6ab727cd0d7.gradio.live/).
+* [2023-05-09] We have launched our [project website](https://detgpt.github.io).
+* [2023-05-08] The first version of DetGPT is available now! Try our [demo](https://99d8da636b0681795f.gradio.live).
 
 
-## [Online Demo](https://e80979f6ab727cd0d7.gradio.live/)
+## [Online Demo](https://99d8da636b0681795f.gradio.live)
 
 ## Examples
 
@@ -74,13 +75,21 @@ merge a lora model with a base model, one may refer to
 [merge script](https://github.com/OptimalScale/LMFlow#53-reproduce-the-result)
 provided by LMFlow.
 
-## Training and Inference
+## Training
 
 The code will be released soon.
 
+## Deploy Demo Locally
+Run the demo by executing the following command. Replace 'ckpt' in the config file to the pretrained linear weights path. 
+The demo runs on 2 GPUs by default, one for the language model and another for GroundingDino.
+```
+CUDA_VISIBLE_DEVICES=0,1 python demo_detgpt.py --cfg-path configs/detgpt_tasktune_13b_coco.yaml
+```
+
 
 ## Acknowledgement
-The project is built on top of [MiniGPT-4](https://github.com/Vision-CAIR/MiniGPT-4), which is based on [BLIP2](https://huggingface.co/docs/transformers/main/model_doc/blip-2) and [Lavis](https://github.com/salesforce/LAVIS). Thanks for these great work!
+The project is built on top of the amazing open-vocabulary detector [GroundingDino](https://github.com/IDEA-Research/GroundingDINO) and multimodal conversation model [MiniGPT-4](https://github.com/Vision-CAIR/MiniGPT-4), which is based on [BLIP2](https://huggingface.co/docs/transformers/main/model_doc/blip-2) and [Lavis](https://github.com/salesforce/LAVIS). 
+Thanks for these great work!
 
 
 If you're using DetGPT in your research or applications, please cite using this BibTeX:
