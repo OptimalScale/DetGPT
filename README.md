@@ -80,8 +80,8 @@ provided by LMFlow.
 The code will be released soon.
 
 ## Deploy Demo Locally
-Run the demo by executing the following command. Replace 'ckpt' in the config file to the pretrained linear weights path. 
-The demo runs on 2 GPUs by default, one for the language model and another for GroundingDino.
+Run the demo by executing the following command. Replace 'path/to/pretrained_linear_weights' in the config file to the real path.  We currently release linear weights based on [Vicuna-13B-v1.1](https://github.com/lm-sys/FastChat#vicuna-weights) and will release other weights later. The demo runs on 2 GPUs by default, one for the language model and another for GroundingDino.
+
 ```
 CUDA_VISIBLE_DEVICES=0,1 python demo_detgpt.py --cfg-path configs/detgpt_tasktune_13b_coco.yaml
 ```
