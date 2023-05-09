@@ -2,6 +2,7 @@
 
 function main() {
     public_server="http://lmflow.org:5000"
+    public_server_detgpt="http://lmflow.org:5000/detgpt/"
     if [ $# -lt 1 -o "$1" = "-h" -o "$1" = "--help" ]; then
         echo "Usage: bash $(basename $0) model_name"
         echo "Example: bash $(basename $0) vicuna-13b"
@@ -40,13 +41,13 @@ function main() {
     if [ "$1" = "coco_task_annotation" -o "$1" = "all" ]; then
         echo "downloading coco_task_annotation"
         filename='coco_task_annotation.json'
-        wget ${public_server}/${filename}
+        wget ${public_server_detgpt}/${filename}
     fi
 
     if [ "$1" = "task_tuned" -o "$1" = "all" ]; then
         echo "downloading task_tuned.pth"
         filename='task_tuned.pth'
-        wget ${public_server}/${filename}
+        wget ${public_server_detgpt}/${filename}
     fi
 }
 

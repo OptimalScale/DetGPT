@@ -197,7 +197,7 @@ model_config.device_8bit = cuda_llm
 model_cls = registry.get_model_class(model_config.arch)
 model_llm = model_cls.from_config(model_config).to(cuda_llm)
 
-vis_processor_cfg = cfg.datasets_cfg.cc_sbu_align.vis_processor.train
+vis_processor_cfg = cfg.datasets_cfg.coco_align.vis_processor.train
 vis_processor = registry.get_processor_class(vis_processor_cfg.name).from_config(vis_processor_cfg)
 chat = Chat(model_llm, vis_processor, device=cuda_llm)
 print_format('Initialization Finished')
@@ -325,7 +325,7 @@ with gr.Blocks() as demo:
             text_button = gr.Button(value="2. Submit Question", interactive=True, variant="primary")
 
             clear = gr.Button("Restart")
-            gr.Markdown("restart")
+            gr.Markdown(restart)
 
         with gr.Column():
             chat_state = gr.State()
@@ -374,7 +374,7 @@ with gr.Blocks() as demo:
                outputs=[gallery, detected_objects])
         text_button.click(gradio_ask, [text_input, chatbot, chat_state], [text_input, chatbot, chat_state]).then(
             gradio_answer,
-            [chatbot, chat_state, img_lssist, num_beams, temperature, length_penalty, do_sample, llm_message_original],
+            [chatbot, chat_state, img_list, num_beams, temperature, length_penalty, do_sample, llm_message_original],
             [chatbot, chat_state, img_list, llm_message_original]
         ).then(fn=run_grounding, inputs=[image, llm_message_original, box_threshold, text_threshold],
                outputs=[gallery, detected_objects])
