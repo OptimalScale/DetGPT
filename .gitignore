@@ -1,0 +1,6 @@
+# Ignore all files with .DS_Store extension (created by macOS Finder)
+.DS_Store
+
+# Ignore all files in  pycharm
+.idea/*
+.idea/

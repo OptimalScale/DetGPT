@@ -47,6 +47,11 @@ conda activate detgpt
 pip install -e .
 ```
 
+**2. Install GroundingDino**
+```bash
+python -m pip install -e GroundingDINO
+```
+
 **2. Download the pretrained checkpoint**
 
 Our model is based on pretrained language model checkpoints.
