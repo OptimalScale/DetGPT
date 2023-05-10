@@ -5,7 +5,7 @@
 </p>
 
 
-[![Demo](https://img.shields.io/badge/Website-Demo-ff69b4.svg)](https://e80979f6ab727cd0d7.gradio.live/)
+[![Demo](https://img.shields.io/badge/Website-Demo-ff69b4.svg)](https://a8c09d45468d21dc66.gradio.live/)
 [![Project](https://img.shields.io/badge/Project-Page-20B2AA.svg)](https://detgpt.github.io/)
 [![Code License](https://img.shields.io/badge/License-BSD--3--Clause-green)](https://github.com/OptimalScale/DetGPT/blob/master/LICENSE.md)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
