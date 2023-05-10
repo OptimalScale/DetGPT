@@ -66,7 +66,7 @@ else:
                      "Step-1. describe the given image in detail.\n" \
                      "Step-2. find all the objects related to user input, and concisely explain why these objects meet the requirement.\n" \
                      "Step-3. list out all related objects existing in the image strictly as follows: <Therefore the answer is: [object_names]>.\n" \
-                     "If you did not complete all 3 steps as detailed as possible, you will be killed.\n" \
+                     "Complete all 3 steps as detailed as possible.\n" \
                      "You must finish the answer with complete sentences."
 
 CONV_VISION = Conversation(
@@ -271,9 +271,9 @@ restart = """<h5>Press restart before trying a new image!</h5>"""
 feature = """<h4>Why DetGPT is appealing?</h4>
 <ol>
   <li>DetGPT locates target objects, not just describing images.</li>
-  <li>DetGPT understands complex instructions, like "Find food that can relieve high blood pressure."</li>
-  <li>DetGPT accurately localizes target objects via LLM reasoning. For example, it can identify bananas as a potassium-rich food to alleviate high blood pressure.</li>
-  <li>DetGPT provides answers beyond human common sense, like identifying unfamiliar fruits rich in potassium.</li>
+  <li>DetGPT understands complex instructions (e.g., it can locate food that relieves high blood pressure)</li>
+  <li>DetGPT accurately localizes target objects via LLM reasoning. (e.g., it identifies bananas as a potassium-rich food to alleviate high blood pressure)</li>
+  <li>DetGPT provides answers beyond human common sense. (e.g., bananas being rich in potassium is rarely known)</li>
 </ol>
 
 Out of respect for privacy and ethical considerations, our model refrains from disclosing specific names of individuals and locations.
