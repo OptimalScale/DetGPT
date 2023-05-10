@@ -21,11 +21,13 @@
 ## Online Demo
 Due to high website traffic, we have created multiple online services. If one link is not working, please use another one. Thank you for your support!
 
-[Demo1](https://355b6070043d1f8ae9.gradio.live/)
+[Demo1](https://9a7da6fe02ede58b2b.gradio.live/)
 
-[Demo2](https://0431a040adc26ac97b.gradio.live/)
+[Demo2](https://5c938c123127ba896b.gradio.live/)
 
-[Demo3](https://a4771e733c7f2799d1.gradio.live/)
+[Demo3](https://1abece85a26b1f821e.gradio.live/)
+
+[Demo4](https://1abece85a26b1f821e.gradio.live/)
 
 
 ## Examples
