@@ -15,7 +15,7 @@
 
 ## News
 * [2023-05-09] We have launched our [project website](https://detgpt.github.io).
-* [2023-05-08] The first version of DetGPT is available now! Try our [demo](https://5c6cdefdefee31f62b.gradio.live/).
+* [2023-05-08] The first version of DetGPT is available now! Try our [demo](https://a03e18d54fcb7ceb54.gradio.live/).
 
 
 ## Online Demo
@@ -23,9 +23,9 @@ Due to high website traffic, we have created multiple online services. If one li
 
 [Demo1](https://a03e18d54fcb7ceb54.gradio.live/)
 
-[Demo2](https://585a0e597e250a662a.gradio.live/)
+[Demo2](https://883e396b2a812343ca.gradio.live/)
 
-[Demo3](https://4b04d09170b66bd1b2.gradio.live/)
+[Demo3](https://59556c2da0a9b999ee.gradio.live/)
 
 [comment]: <> ([Demo4]&#40;https://b66150ee453d74dfeb.gradio.live/&#41;)
 
