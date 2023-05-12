@@ -15,7 +15,7 @@
 
 ## News
 * [2023-05-09] We have launched our [project website](https://detgpt.github.io).
-* [2023-05-08] The first version of DetGPT is available now! Try our [demo](https://5c6cdefdefee31f62b.gradio.live/).
+* [2023-05-08] The first version of DetGPT is available now! Try our [demo](https://a03e18d54fcb7ceb54.gradio.live/).
 
 
 ## Online Demo
