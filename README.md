@@ -25,7 +25,7 @@ Due to high website traffic, we have created multiple online services. If one li
 
 [Demo2](https://883e396b2a812343ca.gradio.live/)
 
-[Demo3](https://59556c2da0a9b999ee.gradio.live/)
+[Demo3](https://78659fcc1459faf52c.gradio.live/)
 
 [comment]: <> ([Demo4]&#40;https://b66150ee453d74dfeb.gradio.live/&#41;)
 
