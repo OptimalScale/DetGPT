@@ -1,17 +1,14 @@
 # DetGPT: Detect What You Need via Reasoning
 
-<p align="center" width="100%">
-<img src="assets/detgpt.png" alt="DetGPT" style="width: 100%; min-width: 300px; display: block; margin: auto; background-color: transparent;">
-</p>
-
-
-[![Demo](https://img.shields.io/badge/Website-Demo-ff69b4.svg)](https://355b6070043d1f8ae9.gradio.live)
+[![Demo](https://img.shields.io/badge/Website-Demo-ff69b4.svg)](https://a03e18d54fcb7ceb54.gradio.live)
 [![Project](https://img.shields.io/badge/Project-Page-20B2AA.svg)](https://detgpt.github.io/)
 [![Code License](https://img.shields.io/badge/License-BSD--3--Clause-green)](https://github.com/OptimalScale/DetGPT/blob/master/LICENSE.md)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
 [![Embark](https://img.shields.io/badge/Discord-DetGPT-%237289da.svg?logo=discord)](https://discord.gg/u9VJNpzhvA)
 [![slack badge](https://img.shields.io/badge/Slack-Join-blueviolet?logo=slack&amp)](https://join.slack.com/t/lmflow/shared_invite/zt-1s6egx12s-THlwHuCjF6~JGKmx7JoJPA)
 [![WeChat badge](https://img.shields.io/badge/WeChat-Join-brightgreen?logo=wechat&amp)](https://i.328888.xyz/2023/05/08/i19P4Q.jpeg)
+
+<a href="https://detgpt.github.io/"><img src="assets/demo_refrige.gif" width="100%"></a>
 
 ## News
 * [2023-05-09] We have launched our [project website](https://detgpt.github.io).
@@ -40,11 +37,14 @@ Due to high website traffic, we have created multiple online services. If one li
 
 
 ## Features
+<p align="center" width="100%">
+<img src="assets/detgpt.png" alt="DetGPT" style="width: 100%; min-width: 300px; display: block; margin: auto; background-color: transparent;">
+</p>
+
 - DetGPT locates target objects, not just describing images.
 - DetGPT understands complex instructions, like "Find blood pressure-reducing foods in the image."
 - DetGPT accurately localizes target objects via LLM reasoning. - For example, it can identify bananas as a potassium-rich food to alleviate high blood pressure.
 - DetGPT provides answers beyond human common sense, like identifying unfamiliar fruits rich in potassium.
-
 
 
 ## Setup
