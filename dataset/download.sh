@@ -8,12 +8,18 @@ function main() {
         echo "Example: bash $(basename $0) all"
     fi
 
-    if [ "$1" = "coco" -o "$1" = "all" ]; then
-        echo "downloading coco"
-        filename='coco.tar.gz'
-        wget ${public_server}/${filename}
-        tar zxvf ${filename}
-        rm ${filename}
+#    if [ "$1" = "coco" -o "$1" = "all" ]; then
+#        echo "downloading coco"
+#        filename='coco_data.tar.gz'
+#        wget ${public_server}/${filename}
+#        tar zxvf ${filename}
+#        rm ${filename}
+#    fi
+
+    if [ "$1" = "coco_task_annotation" -o "$1" = "all" ]; then
+        echo "downloading coco_task_annotation"
+        filename='coco_task_annotation.json'
+        wget ${public_server_detgpt}/${filename}
     fi
 
     if [ "$1" = "cc_sbu_align" -o "$1" = "all" ]; then
