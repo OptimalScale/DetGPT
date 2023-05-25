@@ -105,12 +105,13 @@ Thanks for these great work!
 
 If you're using DetGPT in your research or applications, please cite using this BibTeX:
 ```bibtex
- @misc{detgpt2023,
-    title = {DetGPT: Detect What You Need via Reasoning},
-    url = {to be finished},
-    author = {Pi, Renjie and Gao, Jiahui and Diao, Shizhe and Pan, Rui and Dong, Hanze and Zhang, Jipeng and Yao, Lewei and Kong, Lingpeng and Zhang, Tong},
-    month = {May},
-    year = {2023}
+@misc{pi2023detgpt,
+      title={DetGPT: Detect What You Need via Reasoning}, 
+      author={Renjie Pi and Jiahui Gao and Shizhe Diao and Rui Pan and Hanze Dong and Jipeng Zhang and Lewei Yao and Jianhua Han and Hang Xu and Lingpeng Kong and Tong Zhang},
+      year={2023},
+      eprint={2305.14167},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
 ```
 
