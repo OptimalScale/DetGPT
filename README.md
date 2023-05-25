@@ -11,6 +11,7 @@
 <a href="https://detgpt.github.io/"><img src="assets/demo_refrige.gif" width="100%"></a>
 
 ## News
+* [2023-05-25] Our paper is available at [this link](https://arxiv.org/abs/2305.14167).
 * [2023-05-09] We have launched our [project website](https://detgpt.github.io).
 * [2023-05-08] The first version of DetGPT is available now! Try our [demo](https://883e396b2a812343ca.gradio.live/).
 
@@ -18,11 +19,11 @@
 ## Online Demo
 Due to high website traffic, we have created multiple online services. If one link is not working, please use another one. Thank you for your support!
 
-[Demo1](https://1eeb824dcf5bb64abb.gradio.live/)
+[Demo](https://d3c431c0c77b1d9010.gradio.live/)
 
-[Demo2](https://883e396b2a812343ca.gradio.live/)
+[演示 (简体中文)](https://b0c855964a360b6440.gradio.live/)
 
-[Demo3](https://e19336c4f899f83f34.gradio.live/)
+[Demo (backup)](https://e19336c4f899f83f34.gradio.live/)
 
 [comment]: <> ([Demo4]&#40;https://b66150ee453d74dfeb.gradio.live/&#41;)
 
