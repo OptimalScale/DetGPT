@@ -11,6 +11,7 @@
 <a href="https://detgpt.github.io/"><img src="assets/demo_refrige.gif" width="100%"></a>
 
 ## News
+* [2023-06-13] Added tuned linear weights for Vicuna-7b.
 * [2023-05-25] Our paper is available at [this link](https://arxiv.org/abs/2305.14167).
 * [2023-05-09] We have launched our [project website](https://detgpt.github.io).
 * [2023-05-08] The first version of DetGPT is available now! Try our [demo](https://883e396b2a812343ca.gradio.live/).

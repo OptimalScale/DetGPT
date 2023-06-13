@@ -44,9 +44,14 @@ function main() {
         wget ${public_server_detgpt}/${filename}
     fi
 
-    if [ "$1" = "task_tuned" -o "$1" = "all" ]; then
-        echo "downloading task_tuned.pth"
-        filename='task_tuned.pth'
+    if [ "$1" = "task_tuned_linear_13b" -o "$1" = "all" ]; then
+        echo "downloading task_tuned_linear_13b.pth"
+        filename='task_tuned_linear_13b.pth'
+        wget ${public_server_detgpt}/${filename}
+    fi
+    if [ "$1" = "task_tuned_linear_7b" -o "$1" = "all" ]; then
+        echo "downloading task_tuned_linear_7b.pth"
+        filename='task_tuned_linear_7b.pth'
         wget ${public_server_detgpt}/${filename}
     fi
 }
