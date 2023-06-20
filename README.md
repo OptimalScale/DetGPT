@@ -20,11 +20,12 @@
 ## Online Demo
 Due to high website traffic, we have created multiple online services. If one link is not working, please use another one. Thank you for your support!
 
-[Demo](https://d26d5998a33705d7f7.gradio.live)
 
-[演示 (简体中文)](https://6b9ebbe99b0e5ced11.gradio.live)
+[Demo](https://a4e0b9684150cac767.gradio.live)
 
-[Demo (backup)](https://162ef2d16753e79b93.gradio.live)
+[演示 (简体中文)](https://a4e0b9684150cac767.gradio.live)
+
+[Demo (backup)](https://a4e0b9684150cac767.gradio.live)
 
 [comment]: <> ([Demo4]&#40;https://b66150ee453d74dfeb.gradio.live/&#41;)
 
