@@ -23,9 +23,9 @@ Due to high website traffic, we have created multiple online services. If one li
 
 [Demo](https://a4e0b9684150cac767.gradio.live)
 
-[演示 (简体中文)](https://a4e0b9684150cac767.gradio.live)
+[演示 (简体中文)](https://6b75a399f18e2f11fc.gradio.live)
 
-[Demo (backup)](https://a4e0b9684150cac767.gradio.live)
+[Demo (backup)](https://79488622297b24dad2.gradio.live)
 
 [comment]: <> ([Demo4]&#40;https://b66150ee453d74dfeb.gradio.live/&#41;)
 
