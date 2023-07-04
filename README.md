@@ -21,11 +21,11 @@
 Due to high website traffic, we have created multiple online services. If one link is not working, please use another one. Thank you for your support!
 
 
-[Demo](https://bffb682f9a3f587617.gradio.live)
+[Demo](https://8d23682acd7bb9cb19.gradio.live)
 
 [演示 (简体中文)](https://5eb087810868adf099.gradio.live)
 
-[Demo (backup)](https://bffb682f9a3f587617.gradio.live)
+[Demo (backup)](https://8d23682acd7bb9cb19.gradio.live)
 
 [comment]: <> ([Demo4]&#40;https://b66150ee453d74dfeb.gradio.live/&#41;)
 
