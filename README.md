@@ -89,14 +89,16 @@ merge a lora model with a base model, one may refer to
 provided by LMFlow.
 
 ## Training
-
-The code will be released soon.
-
+Please execute the following command to conduction task training:
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nproc-per-node 8 train.py --cfg-path path-to-config
+```
+Note that we provide two example config files for task tuning under configs/ directory. You need to replace model/ckpt with the path to pretrained linear weights of first stage.
 ## Deploy Demo Locally
 Run the demo by executing the following command. Replace 'path/to/pretrained_linear_weights' in the config file to the real path.  We currently release linear weights based on [Vicuna-13B-v1.1](https://github.com/lm-sys/FastChat#vicuna-weights) and will release other weights later. The demo runs on 2 GPUs by default, one for the language model and another for GroundingDino.
 
 ```
-CUDA_VISIBLE_DEVICES=0,1 python demo_detgpt.py --cfg-path configs/detgpt_tasktune_13b_coco.yaml
+CUDA_VISIBLE_DEVICES=0,1 python demo_detgpt.py --cfg-path configs/detgpt_eval_13b.yaml
 ```
 
 
