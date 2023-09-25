@@ -66,7 +66,7 @@ pip install -e .
 python -m pip install -e GroundingDINO
 ```
 
-**2. Download the pretrained checkpoint**
+**2. Download the pretrained checkpoint and task tuning dataset**
 
 Our model is based on pretrained language model checkpoints.
 In our experiments, we use [Robin](https://github.com/OptimalScale/LMFlow#model-zoo) from [LMFlow team](https://github.com/OptimalScale/LMFlow), and [Vicuna](https://lmsys.org/blog/2023-03-30-vicuna/) and find they perform competitively well.
@@ -87,6 +87,8 @@ merge a lora model with a base model, one may refer to
 [PEFT](https://github.com/huggingface/peft) or use the
 [merge script](https://github.com/OptimalScale/LMFlow#53-reproduce-the-result)
 provided by LMFlow.
+
+The dataset for task tuning is named "coco_task_annotation.json". Please modify detgpt/configs/datasts/coco/align.yaml, such that "storage" points to the COCO dataset, and "file_name" points to the path of the instruction tuning dataset.
 
 ## Training
 Please execute the following command to conduction task training:
