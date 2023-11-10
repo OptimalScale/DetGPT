@@ -1,6 +1,6 @@
 model:
   arch: detgpt
-  model_type: pretrain_vicuna_13b
+  model_type: pretrain_vicuna_7b
   freeze_vit: True
   freeze_qformer: True
   max_txt_len: 160
