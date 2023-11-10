@@ -1,5 +1,5 @@
 model:
-  arch: detgpt_7b
+  arch: detgpt_13b
 
   # vit encoder
   image_size: 224
@@ -13,7 +13,7 @@ model:
   num_query_token: 32
 
   # Robin
-  llama_model: "path/to/robin-7b"
+  llama_model: "path/to/robin-13b"
 
   # generation configs
   prompt: ""

@@ -89,7 +89,23 @@ merge a lora model with a base model, one may refer to
 provided by LMFlow.
 
 The dataset for task tuning is named "coco_task_annotation.json". Please modify detgpt/configs/datasts/coco/align.yaml, such that "storage" points to the COCO dataset, and "file_name" points to the path of the instruction tuning dataset.
+## Data Preparation
+```
+cd dataset
+mkdir coco
+```
+Download the COCO dataset from [COCO home page](https://cocodataset.org/#home).
 
+Here is the data structure:
+
+```
+dataset/coco/
+├── train2017/
+├── val2017/
+├── annotations.json
+├── coco_task_annotation.json
+```
+Note: Please move ```coco_task_annotation.json``` from ```output_models/``` to ```coco/```
 ## Training
 Please execute the following command to conduction task training:
 ```

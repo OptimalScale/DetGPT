@@ -7,7 +7,7 @@ model:
   end_sym: "###"
   prompt_path: "prompts/alignment.txt"
   prompt_template: '###Human: {} ###Assistant: '
-  ckpt: 'path/to/pretrained_linear_weights'
+  ckpt: './output_models/pretrained_minigpt4_13b.pth'
 
 
 datasets:
@@ -37,7 +37,7 @@ run:
   warmup_steps: 200
 
   seed: 42
-  output_dir: "output/detgpt_13b_tasktune_coco_withdescription"
+  output_dir: "output/task-tuned-vicuna13b"
 
   amp: True
   resume_ckpt_path: null
